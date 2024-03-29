@@ -53,14 +53,14 @@ def multimodal_social_account_embedding(ev, et, Wt1, bt1, Wt2, Wv1, bv1, Wv2, al
     """
     # Linear transformation followed by non-linear activation for textual features
     ht1 = non_linear_activation(np.dot(et, Wt1) + bt1, alpha)
-    ht2 = np.dot(ht1, Wt2)
+    ht2 = np.dot(ht1[0], Wt2)
     
     # Linear transformation followed by non-linear activation for visual features
     hv1 = non_linear_activation(np.dot(ev, Wv1) + bv1, alpha)
-    hv2 = np.dot(hv1, Wv2)
+    hv2 = np.dot(hv1[0], Wv2)
     
     # Concatenate and compute inner product to obtain final social account representation
-    ea = np.dot(ht2, hv2.T)
+    ea = np.multiply(ht2, hv2)
     
     return ea
 
@@ -92,7 +92,7 @@ with open('embeddings/extracted_features_files/textual_features.csv', 'r') as cs
         et.append([float(val) for val in row])
 
 # Perform Multimodal Social Account Embedding
-ea = multimodal_social_account_embedding(ev, et, Wt1, bt1, Wt2, Wv1, bv1, Wv2, alpha)
+ea = multimodal_social_account_embedding(ev[0], et[0], Wt1, bt1, Wt2, Wv1, bv1, Wv2, alpha)
 
-print("Final social account representation:")
-print(ea)
+print("Length of the final account representation:", len(ea))
+print("Final social account representation:", ea)
