@@ -1,6 +1,14 @@
 import numpy as np
 import csv
 
+# Example usage
+dv = 25088  # Dimensionality of visual features
+dt = 300   # Dimensionality of textual features
+dh1 = 300  # Dimensionality of the first hidden state vector
+dh2 = 4096  # Dimensionality of the second hidden state vector
+da = 512   # Dimensionality of the final social account representation
+alpha = 0.5
+
 def initialize_parameters(dv, dt, dh1, dh2, da):
     """
     Initialize parameters for the Multimodal Social Account Embedding.
@@ -26,6 +34,9 @@ def initialize_parameters(dv, dt, dh1, dh2, da):
     
     return Wt1, bt1, Wt2, Wv1, bv1, Wv2
 
+# Initialize parameters
+Wt1, bt1, Wt2, Wv1, bv1, Wv2 = initialize_parameters(dv, dt, dh1, dh2, da)
+
 def non_linear_activation(x, alpha):
     """
     Apply Leaky ReLU activation function to the input.
@@ -39,7 +50,7 @@ def non_linear_activation(x, alpha):
     """
     return np.maximum(alpha * x, x)
 
-def multimodal_social_account_embedding(ev, et, Wt1, bt1, Wt2, Wv1, bv1, Wv2, alpha):
+def multimodal_social_account_embedding(ev, et):
     """
     Perform Multimodal Social Account Embedding.
 
@@ -64,35 +75,27 @@ def multimodal_social_account_embedding(ev, et, Wt1, bt1, Wt2, Wv1, bv1, Wv2, al
     
     return ea
 
-# Example usage
-dv = 25088  # Dimensionality of visual features
-dt = 300   # Dimensionality of textual features
-dh1 = 300  # Dimensionality of the first hidden state vector
-dh2 = 4096  # Dimensionality of the second hidden state vector
-da = 512   # Dimensionality of the final social account representation
-alpha = 0.5
 
-# Initialize parameters
-Wt1, bt1, Wt2, Wv1, bv1, Wv2 = initialize_parameters(dv, dt, dh1, dh2, da)
+# # Initialize empty lists to store visual and textual features
+# ev = []
+# et = []
 
-# Initialize empty lists to store visual and textual features
-ev = []
-et = []
+# # Read visual features from CSV
+# with open('embeddings/extracted_features_files/visual_features.csv', 'r') as csvfile:
+#     reader = csv.reader(csvfile)
+#     for row in reader:
+#         ev.append([float(val) for val in row])
 
-# Read visual features from CSV
-with open('embeddings/extracted_features_files/visual_features.csv', 'r') as csvfile:
-    reader = csv.reader(csvfile)
-    for row in reader:
-        ev.append([float(val) for val in row])
+# # Read textual features from CSV
+# with open('embeddings/extracted_features_files/textual_features.csv', 'r') as csvfile:
+#     reader = csv.reader(csvfile)
+#     for row in reader:
+#         et.append([float(val) for val in row])
 
-# Read textual features from CSV
-with open('embeddings/extracted_features_files/textual_features.csv', 'r') as csvfile:
-    reader = csv.reader(csvfile)
-    for row in reader:
-        et.append([float(val) for val in row])
+# # Perform Multimodal Social Account Embedding
+# ea = multimodal_social_account_embedding(ev[0], et[0])
 
-# Perform Multimodal Social Account Embedding
-ea = multimodal_social_account_embedding(ev[0], et[0], Wt1, bt1, Wt2, Wv1, bv1, Wv2, alpha)
+# print("Length of the final account representation:", len(ea))
+# print("Final social account representation:", ea)
 
-print("Length of the final account representation:", len(ea))
-print("Final social account representation:", ea)
+# , Wt1, bt1, Wt2, Wv1, bv1, Wv2, alpha

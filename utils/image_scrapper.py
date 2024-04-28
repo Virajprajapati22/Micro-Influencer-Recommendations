@@ -28,7 +28,7 @@ driver = webdriver.Chrome(options=options)
 
 def getImages(data, file_name):
 
-    img_to_save = '/Users/viru/Documents/GitHub/Micro-Influencer-Recommendations/influencer-dataset/categories/automobile/' + file_name.split('.')[0]
+    img_to_save = '/Users/viru/Documents/GitHub/Micro-Influencer-Recommendations/brands-dataset/automobile/' + file_name.split('.')[0]
 
     # Create the folder if it does not exist
     if not os.path.exists(img_to_save):
@@ -40,12 +40,12 @@ def getImages(data, file_name):
         owner_username = row['ownerUsername']
         urls = row['url']
 
-        infl_folder = img_to_save + '/' + owner_username
+        # infl_folder = img_to_save + '/' + owner_username
 
-        # Create the folder if it does not exist
-        if not os.path.exists(infl_folder):
-            os.makedirs(infl_folder)
-            print(f"Folder '{infl_folder}' created successfully")
+        # # Create the folder if it does not exist
+        # if not os.path.exists(infl_folder):
+        #     os.makedirs(infl_folder)
+        #     print(f"Folder '{infl_folder}' created successfully")
 
         for url in urls:
             # Navigate to the webpage containing the image
@@ -63,7 +63,7 @@ def getImages(data, file_name):
                 response = requests.get(image_url)
                 if response.status_code == 200:
                     # Construct the full file path
-                    filename = os.path.join(infl_folder, f"image_{urls.index(url)}.jpg")  # Use a unique filename
+                    filename = os.path.join(img_to_save, f"image_{urls.index(url)}.jpg")  # Use a unique filename
                     with open(filename, "wb") as f:
                         f.write(response.content)
                     print(f"Image downloaded successfully and saved as {filename}")
@@ -76,19 +76,19 @@ def getImages(data, file_name):
     driver.quit()
 
 
-automobile_dir = '/Users/viru/Documents/GitHub/Micro-Influencer-Recommendations/influencer-dataset/categories/automobile'
-automobile_influencers = ['busfansadoor', 'lifeathgs', 'frank_highway', 'gulfoil.india', 'thechoprafoundation', 'eeco_carlover', 'gsrtc_unplugged', '_etauto', 'autos_vlog', 'ksrtc.unofficial', '8feet6wheels', 'mitchgilbertracing', 'therajmahalpalace', 'auditradition', 'divyagursahani', 'globalspaindia', 'zohacastelino', 'lucas74cruz', 's.peterhansel', 'raashotels', 'benoittreluyer', 'whatesh', '_nehajha_', 'humsufi_insta', 'apacheindianhq', 'anushriyagulati', 'nataliemicah', 'broken.asphalt', 'mr_harley_kid', 'motorcycletales', 'indiabikeweek', 'indiabikeweek', 'theweaero', 'ritambhatnagar', 'prateek.mahesh', 'labelnityabajaj', 'vaibhavrajgupta', 'theenigmaticdrummer', 'shankuraj_konwarmusical', 'sunita_rajwar', 'pardeep_kumar11', 'aline_krauter', 'mizoram_tourism', 'awaaraphotographer', 'aemotorshow', 'mad_over_travell', 'titusupputuru', 'hormazdsorabjee', 'gawdesslike', 'autocar_official', 'jitendravaswani', 'siddique_sculpture', 'martyco.in', '_megharoy_', 'autoxmag', '_khantaha_', 'motorcyclenews', 'triumphgermany', 'mr_bajaj', 'suparbiker', 'max.hwrd', 'broken.asphalt', 'wrapcraft', 'kevinthomasck', 'indiabikeweek', 'winter_wanderer', 'gods_own_jeepers', 'nos_motografia', 'framefusion_', 'indiawithinsia', 'jeep_at', 'jeepuaete', 'punisher7547', 'bhatius', 'kartick.wildlifesos', 'jeepnz', 'rohitmane93', 'iamunimo', 'theterratribe', 'modi_equestrian', 'sorabhpant', 'exploringwithroy', 'tatapowercompanyltd', 'sudhanshuchandra', 'kreate_with_kashif', 'futureskillsprime', 'jeswinrebello', 'akclixx', 'prithwi', 'sainath_rockstar', 'oaktreesport', 'cyrusdhabhar', 'arppithaandaa', 'gayathryrajiv', 'rohitmane93', 'madhura__balaji', 'rachit.hirani', 'turbochargedmag', 'almostaayush', 'mathieucesar', 'purvapandit', 'nitishwaila', 'motorworldindia', 'newindianexpress', 'potter.sophie', 'carindia_mag', 'lucavanassche', 'lucavanassche', 'laurensvandenacker', 'deepika_sethi_1', 'sajad_machu', 'sidpatankar', 'motorplanetofficial_com', 'carswithkaran', 'volkswagen_quadrados', 'bandishprojekt', 'hormazdsorabjee', 'gti_lovers', 'oaffmusic', 'kunalrawaldstress', 'thegtproduction']
+# automobile_dir = '/Users/viru/Documents/GitHub/Micro-Influencer-Recommendations/influencer-dataset/categories/automobile'
+# automobile_influencers = ['busfansadoor', 'lifeathgs', 'frank_highway', 'gulfoil.india', 'thechoprafoundation', 'eeco_carlover', 'gsrtc_unplugged', '_etauto', 'autos_vlog', 'ksrtc.unofficial', '8feet6wheels', 'mitchgilbertracing', 'therajmahalpalace', 'auditradition', 'divyagursahani', 'globalspaindia', 'zohacastelino', 'lucas74cruz', 's.peterhansel', 'raashotels', 'benoittreluyer', 'whatesh', '_nehajha_', 'humsufi_insta', 'apacheindianhq', 'anushriyagulati', 'nataliemicah', 'broken.asphalt', 'mr_harley_kid', 'motorcycletales', 'indiabikeweek', 'indiabikeweek', 'theweaero', 'ritambhatnagar', 'prateek.mahesh', 'labelnityabajaj', 'vaibhavrajgupta', 'theenigmaticdrummer', 'shankuraj_konwarmusical', 'sunita_rajwar', 'pardeep_kumar11', 'aline_krauter', 'mizoram_tourism', 'awaaraphotographer', 'aemotorshow', 'mad_over_travell', 'titusupputuru', 'hormazdsorabjee', 'gawdesslike', 'autocar_official', 'jitendravaswani', 'siddique_sculpture', 'martyco.in', '_megharoy_', 'autoxmag', '_khantaha_', 'motorcyclenews', 'triumphgermany', 'mr_bajaj', 'suparbiker', 'max.hwrd', 'broken.asphalt', 'wrapcraft', 'kevinthomasck', 'indiabikeweek', 'winter_wanderer', 'gods_own_jeepers', 'nos_motografia', 'framefusion_', 'indiawithinsia', 'jeep_at', 'jeepuaete', 'punisher7547', 'bhatius', 'kartick.wildlifesos', 'jeepnz', 'rohitmane93', 'iamunimo', 'theterratribe', 'modi_equestrian', 'sorabhpant', 'exploringwithroy', 'tatapowercompanyltd', 'sudhanshuchandra', 'kreate_with_kashif', 'futureskillsprime', 'jeswinrebello', 'akclixx', 'prithwi', 'sainath_rockstar', 'oaktreesport', 'cyrusdhabhar', 'arppithaandaa', 'gayathryrajiv', 'rohitmane93', 'madhura__balaji', 'rachit.hirani', 'turbochargedmag', 'almostaayush', 'mathieucesar', 'purvapandit', 'nitishwaila', 'motorworldindia', 'newindianexpress', 'potter.sophie', 'carindia_mag', 'lucavanassche', 'lucavanassche', 'laurensvandenacker', 'deepika_sethi_1', 'sajad_machu', 'sidpatankar', 'motorplanetofficial_com', 'carswithkaran', 'volkswagen_quadrados', 'bandishprojekt', 'hormazdsorabjee', 'gti_lovers', 'oaffmusic', 'kunalrawaldstress', 'thegtproduction']
 
+automobile_brand_dir = '/Users/viru/Documents/GitHub/Micro-Influencer-Recommendations/brands-dataset/automobile'
 
-xlsx_files = [file for file in os.listdir(automobile_dir) if file.endswith('.xlsx')]
+xlsx_files = [file for file in os.listdir(automobile_brand_dir) if file.endswith('.xlsx')]
 
 for file_name in xlsx_files:
-    file_path = os.path.join(automobile_dir, file_name)
+    file_path = os.path.join(automobile_brand_dir, file_name)
 
     df = pd.read_excel(file_path)
 
     df = df[['ownerUsername', 'url']]
     grouped_df = df.groupby('ownerUsername')['url'].agg(list).reset_index()
 
-    if file_name == 'volkswagen_india_influencers_posts.json.xlsx':
-        getImages(grouped_df, file_name)
+    getImages(grouped_df, file_name)

@@ -7,7 +7,7 @@ import numpy as np
 import csv
 import ssl
 
-from weighted_pooling import weighted_history_pooling
+# from weighted_pooling import weighted_history_pooling
 
 ssl._create_default_https_context = ssl._create_unverified_context
 # Load the VGG16 model pretrained on ImageNet
@@ -36,22 +36,22 @@ def extract_and_flatten_features(image_paths):
         flattened_features_list.append(flattened_features)
     return np.concatenate(flattened_features_list, axis=0)
 
-# All images paths to extract the visual features
-image_paths = [
-    "/Users/viru/Documents/GitHub/Micro-Influencer-Recommendations/influencer-dataset/images/_luvbebe_-1301263632084140443.jpg",
-    "/Users/viru/Documents/GitHub/Micro-Influencer-Recommendations/influencer-dataset/images/_luvbebe_-1309137756152393028.jpg",
-    "/Users/viru/Documents/GitHub/Micro-Influencer-Recommendations/influencer-dataset/images/_luvbebe_-1549849509901766222.jpg",
-    "/Users/viru/Documents/GitHub/Micro-Influencer-Recommendations/influencer-dataset/images/_luvbebe_-1598710622573229256.jpg",
-    "/Users/viru/Documents/GitHub/Micro-Influencer-Recommendations/influencer-dataset/images/_luvbebe_-1627337295786782351.jpg"
-]
+# # All images paths to extract the visual features
+# image_paths = [
+#     "/Users/viru/Documents/GitHub/Micro-Influencer-Recommendations/influencer-dataset/images/_luvbebe_-1301263632084140443.jpg",
+#     "/Users/viru/Documents/GitHub/Micro-Influencer-Recommendations/influencer-dataset/images/_luvbebe_-1309137756152393028.jpg",
+#     "/Users/viru/Documents/GitHub/Micro-Influencer-Recommendations/influencer-dataset/images/_luvbebe_-1549849509901766222.jpg",
+#     "/Users/viru/Documents/GitHub/Micro-Influencer-Recommendations/influencer-dataset/images/_luvbebe_-1598710622573229256.jpg",
+#     "/Users/viru/Documents/GitHub/Micro-Influencer-Recommendations/influencer-dataset/images/_luvbebe_-1627337295786782351.jpg"
+# ]
 
-# Extracting the visual features
-flattened_features = extract_and_flatten_features(image_paths)
+# # Extracting the visual features
+# flattened_features = extract_and_flatten_features(image_paths)
 
-# Applying the Weighted History Pooling method to the visual features
-ev = weighted_history_pooling(flattened_features, 0.333)
+# # Applying the Weighted History Pooling method to the visual features
+# ev = weighted_history_pooling(flattened_features, 0.333)
 
-# Save visual features to CSV
-with open('embeddings/extracted_features_files/visual_features.csv', 'w', newline='') as csvfile:
-    writer = csv.writer(csvfile)
-    writer.writerow(ev)
+# # Save visual features to CSV
+# with open('embeddings/extracted_features_files/visual_features.csv', 'w', newline='') as csvfile:
+#     writer = csv.writer(csvfile)
+#     writer.writerow(ev)
