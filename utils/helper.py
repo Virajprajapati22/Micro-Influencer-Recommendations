@@ -130,7 +130,6 @@ electronics_influencers = [
     'wonderversechicago'
 ]
 
-
 json_files = [file for file in os.listdir(electronics_dir) if file.endswith('.json')]
 
 required_features = ['ownerUsername', 'url', 'caption', 'hashtags', 'mentions', 'commentsCount', 'likesCount', 'timestamp']
